@@ -240,6 +240,7 @@ h1#logo a {
 	height:214px;
 }
 .movie-image a {
+	opacity: 1;
 	float:left;
 	display:inline;
 	width:152px;
@@ -247,13 +248,16 @@ h1#logo a {
 	position:relative;
 	z-index:2;
 }
+.movie-image:hover {
+opacity: .65;
+}
 .play {
 	position:absolute;
 	top:0;
 	left:0;
 	width:152px;
 	height:214px;
-	background:url('images/image-hover.png');
+	/* background:url('images/image-hover.png'); */
 	display:block;
 	z-index:5;
 	cursor:pointer;
