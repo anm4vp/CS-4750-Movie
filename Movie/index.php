@@ -14,13 +14,13 @@
 <!-- START PAGE SOURCE -->
   <!-- Header -->
   <div id="header">
-    <h1 id="logo"><a href="#">MovieSearch</a></h1>
+    <h1 id="logo"><a href="index.php">MovieSearch</a></h1>
 
     <div id="navigation">
       <ul>
-        <li><a class="active" href="#">HOME</a></li>
-        <li><a href="#">LOG IN</a></li>
-        <li><a href="#">CONTACT</a></li>
+        <li><a class="active" href="index.php">HOME</a></li>
+        <li><a href="login.html">LOG IN</a></li>
+        <li><a href="signup.html">SIGN UP</a></li>
       </ul>
     </div>
 
@@ -42,6 +42,9 @@
   <div id="main">
     <div id="content">
       <div class="box">
+        <div class="head">
+
+        </div>
         <?php
          require_once('./library.php');
          $con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE);
@@ -58,7 +61,7 @@
          while($row = mysqli_fetch_array($result)) {
          print '
          <div class="movie">
-           <div class="movie-image"> <span class="play"><span class="name">'.$row['Moviename'].'</span></span> <a href="info.php"><img src="css/images/movie1.jpg" alt="" /></a> </div>
+           <div class="movie-image"> <span class="play"><span class="name">'.$row['Moviename'].'</span></span> <a href="info.php"><img src="css/images/'.$row['Moviename'].'.jpg" alt="hi" /></a> </div>
            <div class="rating">
             <font-size="20em"><p>'.$row['Moviename'].'</p></font>
             <br>
@@ -72,9 +75,11 @@
     </div>
   </div>
 </div>
-<div>
+</br>
+</br>
 <!-- End Main -->
 
 <!-- END PAGE SOURCE -->
+</div>
 </body>
 </html>
