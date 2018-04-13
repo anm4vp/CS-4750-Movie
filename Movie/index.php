@@ -61,7 +61,7 @@
          while($row = mysqli_fetch_array($result)) {
          print '
          <div class="movie">
-           <div class="movie-image"> <span class="play"><span class="name">'.$row['Moviename'].'</span></span> <a href="info.php"><img src="css/images/'.$row['Moviename'].'.jpg" alt="hi" /></a> </div>
+           <div class="movie-image"> <span class="play"><a href="info.php"><span class="name">'.$row['Moviename'].'</span></a></span><img src="css/images/'.$row['Moviename'].'.jpg" alt="hi" /> </div>
            <div class="rating">
             <font-size="20em"><p>'.$row['Moviename'].'</p></font>
             <br>
