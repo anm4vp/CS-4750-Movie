@@ -61,7 +61,7 @@
          while($row = mysqli_fetch_array($result)) {
          print '
          <div class="movie">
-           <div class="movie-image"> <span class="play"><a href="info.php"><span class="name">'.$row['Moviename'].'</span></a></span><img src="css/images/'.$row['Moviename'].'.jpg" alt="hi" /> </div>
+           <div class="movie-image"> <span class="play"><a href="info.php?moviename='.$row['Moviename'].'"><span class="name">'.$row['Moviename'].'</span></a></span><img src="css/images/'.$row['Moviename'].'.jpg" alt="hi" /> </div>
            <div class="rating">
             <font-size="20em"><p>'.$row['Moviename'].'</p></font>
             <br>
@@ -74,12 +74,20 @@
         ?>
     </div>
   </div>
+
+  <div class="cl">&nbsp;</div>
+
 </div>
-</br>
-</br>
+
 <!-- End Main -->
 
 <!-- END PAGE SOURCE -->
+<!-- FOOTER -->
+<div id="footer">
+  <p class="lf">Copyright &copy; 2018 <a href="#">MovieSearch</a> - All Rights Reserved</p>
+  <p class="rf">Design by <a href="#">MovieSearch Team</a></p>
+<div style="clear:both;"></div>
+</div>
 </div>
 </body>
 </html>

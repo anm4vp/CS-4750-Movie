@@ -12,38 +12,24 @@
 <!-- START PAGE SOURCE -->
 <div id="shell">
   <div id="header">
-    <h1 id="logo"><a href="#">MovieHunter</a></h1>
-    <div class="social"> <span>FOLLOW US ON:</span>
-      <ul>
-        <li><a class="twitter" href="#">twitter</a></li>
-        <li><a class="facebook" href="#">facebook</a></li>
-        <li><a class="vimeo" href="#">vimeo</a></li>
-        <li><a class="rss" href="#">rss</a></li>
-      </ul>
-    </div>
+    <h1 id="logo"><a href="index.php">MovieSearch</a></h1>
+
     <div id="navigation">
       <ul>
-        <li><a class="active" href="#">HOME</a></li>
-        <li><a href="#">NEWS</a></li>
-        <li><a href="#">IN THEATERS</a></li>
-        <li><a href="#">COMING SOON</a></li>
-        <li><a href="#">CONTACT</a></li>
-        <li><a href="#">ADVERTISE</a></li>
+        <li><a href="index.php">HOME</a></li>
+        <li><a href="login.html">LOG IN</a></li>
+        <li><a href="signup.html">SIGN UP</a></li>
       </ul>
     </div>
+
+
     <div id="sub-navigation">
-      <ul>
-        <li><a href="#">SHOW ALL</a></li>
-        <li><a href="#">LATEST TRAILERS</a></li>
-        <li><a href="#">TOP RATED</a></li>
-        <li><a href="#">MOST COMMENTED</a></li>
-      </ul>
       <div id="search">
-        <form action="#" method="get" accept-charset="utf-8">
+        <!-- <form action="#" method="get" accept-charset="utf-8">
           <label for="search-field">SEARCH</label>
           <input type="text" name="search field" value="Enter search here" id="search-field" class="blink search-field"  />
           <input type="submit" value="GO!" class="search-button" />
-        </form>
+        </form> -->
       </div>
     </div>
   </div>
@@ -65,22 +51,56 @@
       </div> -->
     <div id="news">
       <div class="head">
-        <h3>MOVIENAME</h3>
+        <?php if(isset($_GET['moviename'])){
+          $movie = $_GET['moviename'];
+          echo "<h3>".$movie."</h3>";
+        }
+        ?>
+
       </br>
         <center>
-          <img width=200em height=100% src="css/images/movie1.jpg" alt="" />
+          <?php
+            print '
+            <img width=200em height=100% src="css/images/'.$movie.'.jpg" alt="" />
+            ';
+          ?>
+          <!-- <img width=200em height=100% src="css/images/movie1.jpg" alt="" /> -->
         </center>
       </div>
       <div class="content">
-        <p class="date">10.04.09</p>
+        <?php
+         require_once('./library.php');
+         $con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE);
+         // Check connection
+         if (mysqli_connect_errno()) {
+         echo("Can't connect to MySQL Server. Error code: " .
+        mysqli_connect_error());
+         return null;
+         }
+         // Form the SQL query (a SELECT query)
+         $sql="SELECT Moviename, RottenTomatoLink, length, synopsis, releaseDate FROM Movies WHERE Moviename = '".$movie."' ";
+         $result = mysqli_query($con,$sql);
+         // Print the data from the table row by row
+         while($row = mysqli_fetch_array($result)) {
+         print '
+         <p> Release Date: '.$row['releaseDate'].'</p>
+         <p> Length: '.$row['length'].' mins </p>
+         <p>Synopis: '.$row['synopsis'].'</p>
+         <a href="'.$row['RottenTomatoLink'].'">Click here to learn more</a>
+           ';
+         }
+         mysqli_close($con);
+        ?>
+        <!-- <p class="date">10.04.09</p>
         <h4>The Box</h4>
         <p>Norma and Arthur Lewis are a suburban couple with a young child who receive an anonymous gift bearing fatal and irrevocable consequences.</p>
-        <a href="#">Read more</a> </div>
+        <a href="#">Read more</a>  -->
+      </div>
     </div>
 
     <div id="coming">
       <div class="head">
-        <h3>SHOWTIMES<strong>!</strong></h3>
+        <h3>Theaters</h3>
         <p class="text-right"><a href="#">See all</a></p>
       </div>
       <div class="content">
@@ -99,8 +119,8 @@
     <div class="cl">&nbsp;</div>
   </div>
   <div id="footer">
-    <p class="lf">Copyright &copy; 2010 <a href="#">SiteName</a> - All Rights Reserved</p>
-    <p class="rf">Design by <a href="http://chocotemplates.com/">ChocoTemplates.com</a></p>
+    <p class="lf">Copyright &copy; 2018 <a href="#">MovieSearch</a> - All Rights Reserved</p>
+    <p class="rf">Design by <a href="#">MovieSearch Team</a></p>
     <div style="clear:both;"></div>
   </div>
 </div>

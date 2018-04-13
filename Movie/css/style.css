@@ -62,7 +62,7 @@ h2 {
 	font-weight:bold;
 }
 h3 {
-	font-size:14px;
+	font-size:25px;
 	color:#fff;
 	font-weight:bold;
 }
@@ -285,7 +285,7 @@ opacity: .65;
 }
 .rating p {
 	float:left;
-	font-size:10px;
+	font-size:12px;
 	color:#fff;
 	font-weight:bold;
 }
