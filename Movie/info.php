@@ -58,14 +58,14 @@
         ?>
 
       </br>
-        <center>
+        <!-- <center> -->
           <?php
             print '
             <img width=200em height=100% src="css/images/'.$movie.'.jpg" alt="" />
             ';
           ?>
           <!-- <img width=200em height=100% src="css/images/movie1.jpg" alt="" /> -->
-        </center>
+        <!-- </center> -->
       </div>
       <div class="content">
         <?php
@@ -104,16 +104,36 @@
         <p class="text-right"><a href="#">See all</a></p>
       </div>
       <div class="content">
-        <h4>The Princess and the Frog </h4>
+        <?php
+         require_once('./library.php');
+         $con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE);
+         // Check connection
+         if (mysqli_connect_errno()) {
+         echo("Can't connect to MySQL Server. Error code: " .
+        mysqli_connect_error());
+         return null;
+         }
+         // Form the SQL query (a SELECT query)
+         $sql="SELECT showtime, theater_id FROM Show WHERE Moviename = '".$movie."'";
+         $result = mysqli_query($con,$sql);
+         // Print the data from the table row by row
+         while($row = mysqli_fetch_array($result)) {
+         print '
+         <h4> '.$row['theater_id'].' </h4>
+          <div class="rating">
+          <p>'.$row['showtime'].'</p>
+          </div>
+           ';
+         }
+         mysqli_close($con);
+        ?>
+        <!-- <h4>The Princess and the Frog </h4>
         <a href="#"><img src="css/images/coming-soon1.jpg" alt="" /></a>
         <p>Walt Disney Animation Studios presents the musical &quot;The Princess and the Frog,&quot; an animated comedy set in the great city of New Orleans...</p>
-        <a href="#">Read more</a> </div>
+        <a href="#">Read more</a> -->
+      </div>
       <div class="cl">&nbsp;</div>
-      <div class="content">
-        <h4>The Princess and the Frog </h4>
-        <a href="#"><img src="css/images/coming-soon2.jpg" alt="" /></a>
-        <p>Walt Disney Animation Studios presents the musical &quot;The Princess and the Frog,&quot; an animated comedy set in the great city of New Orleans...</p>
-        <a href="#">Read more</a> </div>
+
     </div>
 
     <div class="cl">&nbsp;</div>
