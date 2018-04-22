@@ -1,7 +1,9 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>MovieHunter</title>
+<title>MovieSearch</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
@@ -12,18 +14,43 @@
 <!-- START PAGE SOURCE -->
 <div id="shell">
   <div id="header">
+    <?php
+   if(isset($_SESSION['loggedin'])){
+     if ($_SESSION['loggedin'] == TRUE){
+       $username = $_SESSION['user'];
+       echo '<div id="header">
+    <h1 id="logo"><a href="MovieSearch.php">MovieSearch</a></h1>
+
+    <div id="navigation">
+      <ul>
+        <li><a class="active" href="MovieSearch.php">HOME</a></li>
+        <li><a href="history.php">HISTORY</a></li>
+        <li><a href="rewards.php">REWARDS</a></li>
+        <li><a href="top.php">TOP SELLING MOVIES</a></li>
+        <li><a href="logout.php">LOG OUT</a></li>
+      </ul>
+    </div>';
+     }
+   } else {
+       echo'<div id="header">
     <h1 id="logo"><a href="index.php">MovieSearch</a></h1>
 
     <div id="navigation">
       <ul>
-        <li><a href="index.php">HOME</a></li>
+        <li><a class="active" href="index.php">HOME</a></li>
+        <li><a href="top.php">TOP SELLING MOVIES</a></li>
         <li><a href="login.html">LOG IN</a></li>
         <li><a href="signup.html">SIGN UP</a></li>
       </ul>
-    </div>
-
-
+    </div>';
+   }
+      ?>
     <div id="sub-navigation">
+   <center>
+   1) <a href="index.php" class=class2> Select a Movie</a>    
+	 2) <a href="" class=class2> Movie Info</a>
+	       3) <a class=class2> Purchase Tickets</a>
+</center>
       <div id="search">
         <!-- <form action="#" method="get" accept-charset="utf-8">
           <label for="search-field">SEARCH</label>
@@ -37,7 +64,7 @@
     <!-- <div class="box">
         <div class="head">
           <h2>LATEST TRAILERS</h2>
-          <p class="text-right"><a href="#">See all</a></p>
+          <p class="text-right"><a href="seeall.php">See All Theaters</a></p>
         </div>
         <div class="movie">
           <div class="rating">
@@ -101,7 +128,7 @@
     <div id="coming">
       <div class="head">
         <h3>Theaters</h3>
-        <p class="text-right"><a href="#">See all</a></p>
+        <p class="text-right"><a href="seeall.php">See All Theaters</a></p>
       </div>
       <div class="content">
         <?php
@@ -129,9 +156,7 @@
             $mov = array();
             $mov[] = $row2['showtime'];
             foreach($mov as $val) {
-              echo ' 
-              <a href="purchase.php?time='.$val.'"> '".$val."'</a>
-              ';
+              print ' <a href="purchase.php?moviename='.$movie.'&showtime='.$val.'&theater='.$row['theater_name'].'" class="class1"> '.$val.' </a>';
             }
           }
         }
