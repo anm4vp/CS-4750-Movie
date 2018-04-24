@@ -1,7 +1,4 @@
-<?php session_start();?>
-
-<?php
-if(isset($_SESSION['loggedin'])){
+f(isset($_SESSION['loggedin'])){
   if ($_SESSION['loggedin'] == TRUE){
 
 include_once("./library.php"); // To connect to the database
@@ -81,6 +78,7 @@ while($row5 = mysqli_fetch_array($result5)) {
 $sql6 = "SELECT points FROM Rewards WHERE reward_id = ' ".$row5['reward_id']."'";
 $result6 = mysqli_query($con, $sql6);
 
+$pointsVar = 0;
 while($row6 = mysqli_fetch_array($result6)) {
   $pointsVar = $row6['points'] + ($num * 100);
   $sql4="UPDATE Rewards SET points = $pointsVar WHERE reward_id = ' ".$row5['reward_id']."'";
@@ -102,7 +100,11 @@ if (!mysqli_query($con,$sql6))
 
 
   }
-  header('Location: confirmation.php');
+  if($pointsVar >= 1000){
+	 header("Location: confirmation.php?receiveReward=true");
+  }else{
+	 header("Location: confirmation.php?receiveReward=false");
+  }
 }
 else { 
   header("Location: login.html");
@@ -110,3 +112,4 @@ else {
 
 mysqli_close($con);
 ?>
+

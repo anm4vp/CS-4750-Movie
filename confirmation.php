@@ -65,6 +65,24 @@
         </div>
       </div>
     </div>
+	
+	<?php
+     if(isset($_GET['receiveReward'])){
+        $reward=$_GET['receiveReward'];
+		if($reward=="true"){
+			echo '<div id="reward">                                                                                                                                           
+             <center>
+             <br>
+             <p> Click the picture below to receive your free drink ticket coupon!</p>
+			 <a href="freeDrink.png" download>
+             <img border="0" src="freeDrink.png" width="200" height="142">
+             </a>
+             </center>                                                                                                                                                        
+             </div>';
+		}
+     } 
+      ?>
+	
 
     <div id="footer">
   <p class="lf">Copyright &copy; 2018 <a href="#">MovieSearch</a> - All Rights Reserved</p>
@@ -74,3 +92,4 @@
 
 </body>
 </html>
+
