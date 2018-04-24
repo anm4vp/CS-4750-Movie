@@ -61,6 +61,8 @@
         <center>
           <br>
           <p> We hope you enjoy your movie!</p>
+          <br>
+          <p> Make sure to check your reward points to see when you are eligible for a free ticket. </p>
         </center>
         </div>
       </div>
