@@ -19,7 +19,7 @@
      if ($_SESSION['loggedin'] == TRUE){
        $username = $_SESSION['user'];
        echo '<div id="header">                                                                                                                                           
-    <h1 id="logo"><a href="confirmation.php">MovieSearch</a></h1>                                                                                                         
+    <h1 id="logo"><a href="MovieSearch.php">MovieSearch</a></h1>                                                                                                         
                                                                                                                                                                          
     <div id="navigation">                                                                                                                                                
       <ul>                                                                                                                                                              

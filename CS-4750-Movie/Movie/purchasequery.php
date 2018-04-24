@@ -102,7 +102,7 @@ if (!mysqli_query($con,$sql6))
 
 
   }
-  header('Location: MovieSearch.php');
+  header('Location: confirmation.php');
 }
 else { 
   header("Location: login.html");
