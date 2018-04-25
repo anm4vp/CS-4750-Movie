@@ -1,4 +1,7 @@
-f(isset($_SESSION['loggedin'])){
+<?php session_start();?>
+
+<?php
+if(isset($_SESSION['loggedin'])){
   if ($_SESSION['loggedin'] == TRUE){
 
 include_once("./library.php"); // To connect to the database
